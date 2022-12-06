@@ -5,10 +5,13 @@ import styles from '../styles/Home.module.css'
 interface Props {
   children: ReactNode
 }
-export default function Index() {
+export default function Home({children}:Props) {
   return (
     <>
-    <h1>hi</h1>
+      <Head>
+        <title>Movie API</title>
+      </Head>
+      {children}
     </>
   )  
 }

@@ -1,4 +1,10 @@
-html,
+@tailwind base; /* Preflight will be injected here */
+
+@tailwind components;
+
+@tailwind utilities;
+
+/* html,
 body {
   padding: 0;
   margin: 0;
@@ -23,4 +29,4 @@ a {
     color: white;
     background: black;
   }
-}
+} */
