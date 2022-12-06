@@ -1,17 +1,19 @@
-import React, {ReactNode} from 'react'
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React, { ReactNode } from 'react';
+import styles from '../styles/Home.module.css';
+import Nav from './nav';
+import Head from 'next/head';
 
 interface Props {
-  children: ReactNode
+	children: ReactNode;
 }
-export default function Home({children}:Props) {
-  return (
-    <>
-      <Head>
-        <title>Movie API</title>
-      </Head>
-      {children}
-    </>
-  )  
+export default function Home({ children }: Props) {
+	return (
+		<>
+			<Head>
+				<title>dd</title>
+			</Head>
+			<Nav />
+			{children}
+		</>
+	);
 }
