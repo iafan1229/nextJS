@@ -1,35 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 import Link from 'next/link';
+import { useRouter } from "next/router";
 
-interface Movie {
-	backdrop_path: string;
-	original_title: string;
-}
 interface backendData {
-	posts: {
-		results: Result[];
-	};
+	data: {
+		results: Result[]
+	}
 }
 interface Result {
 	backdrop_path: string;
 	original_title: string;
+	id?: number;
 }
-export default function Index(props: backendData) {
-	console.log(props.posts.results);
-	const [result] = props.posts.results;
+
+export default function Index(props:backendData) {
+	const router = useRouter()
 	return (
 		<>
-			<h1 className='text-rose-500'>Trending List</h1>
-			<ul className='flex flex-wrap	justify-center	'>
-				{props.posts.results?.map((el, idx) => {
+			<h1 className='text-rose-500' style={{paddingBottom:"30px 0",fontSize:30}}>Trending List</h1>
+			<ul className='flex flex-wrap	justify-center'>
+				{props.data.results?.map((el, idx) => {
+					const {backdrop_path, original_title, id} = el
 					return (
-						<li className='basis-6/12' key={idx}>
-							<Link href='/detail'>
-								<img
-									src={`https://image.tmdb.org/t/p/w500/${el.backdrop_path}`}></img>
-								<li>{el.original_title}</li>
-							</Link>
+						<li className='basis-6/12' key={idx} onClick={()=>router.push(`/${id}`)}>
+							<img src={`https://image.tmdb.org/t/p/w500/${backdrop_path}`}></img>
+							<p>{original_title}</p>
 						</li>
 					);
 				})}
@@ -37,26 +33,15 @@ export default function Index(props: backendData) {
 		</>
 	);
 }
-export async function getData() {
-	await fetch(`http://localhost:3000/again`)
-		.then((res) => {
-			return res.json();
-		})
-		.then((post) => {
-			console.log(post);
-			return post;
-			// getMovies(post.results);
-		});
+async function getData() {
+	return await fetch(`http://localhost:3000/again`).then((res) => res.json()).then((post) => post)
 }
 
 export async function getStaticProps() {
-	const res = await fetch('http://localhost:3000/again');
-	const posts = await res.json();
+	let result = await getData().then(el=>el)
 	return {
 		props: {
-			posts,
-			// data: await getData(),
+			data: result,
 		},
-		// revalidate: 10,
 	};
 }

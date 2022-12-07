@@ -10,7 +10,7 @@ export default function Home({ children }: Props) {
 	return (
 		<>
 			<Head>
-				<title>dd</title>
+				<title>Next Movies || {}</title>
 			</Head>
 			<Nav />
 			{children}
