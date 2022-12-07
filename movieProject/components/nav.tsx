@@ -1,14 +1,14 @@
 import Link from 'next/link';
 
-export default function nav() {
+export default function Nav() {
 	return (
 		<nav>
 			<ul>
 				<li>
-					<Link href='/'>Movies</Link>
+					<Link href='/'>영화리스트</Link>
 				</li>
 				<li>
-					<Link href='/detail'>ABOUT</Link>
+					<Link href='/about'>소개</Link>
 				</li>
 			</ul>
 		</nav>

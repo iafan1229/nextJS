@@ -1,3 +1,9 @@
+import Seo from '../components/seo'
+
+
 export default function about() {
-	return <div>about</div>;
+	
+	return (
+		<Seo title="소개"/>
+	)
 }

@@ -1,17 +1,13 @@
 import React, { ReactNode } from 'react';
 import styles from '../styles/Home.module.css';
-import Nav from './nav';
-import Head from 'next/head';
+import Nav from './nav'
 
 interface Props {
 	children: ReactNode;
 }
-export default function Home({ children }: Props) {
+export default function Layout({ children }: Props) {
 	return (
 		<>
-			<Head>
-				<title>Next Movies || {}</title>
-			</Head>
 			<Nav />
 			{children}
 		</>
