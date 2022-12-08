@@ -3,34 +3,47 @@ import React, {useEffect, useState, useRef} from 'react';
 
 export default function Home() {
   const [courier, setCourier] = useState<any>([]);
+  const [select, setSelect] = useState<[]>([])
   const [selected, setSelected] = useState<any>(null)
   const [pk, setPk] = useState<any>(null)
+
   useEffect(()=>{
-    // fetch(`https://apis.tracker.delivery/carriers/kr.hanjin/tracks/451531853603`)
     fetch(`/api/courier`)
     .then(res=>res.json()).then(res=>setCourier(res))
   },[])
 
-  useEffect(()=>{
-    setSelected(courier?.map(el=>el.id))
-  },[courier])
 
-  const handleSelect = (e:any) => {
-    e.preventDefault();
-    courier?.includes(e.target.value) && null;
+  const handleDomestic = () => { 
+    setSelect(courier.filter(el=>{
+      return (el.id.includes("kr"))
+    }))
   }
+  const handleAbroad = () => {
+    setSelect(courier.filter(el=>{
+      return !(el.id.includes("kr"))
+    }))
+  }
+
+  const handleSelect = (e) => {
+    console.log(e.target.value)
+  }
+
+  useEffect(()=>{
+    console.log(select)
+  },[select])
+
   return (
     <div id="wrap">
       <section>
         <div>
           <h2>국내/국외 선택</h2>
-          <button>국내</button>
-          <button>국외</button>
+          <button type="button" set={true} onClick={handleDomestic}>국내</button>
+          <button onClick={handleAbroad}>국외</button>
         </div>
         <div>
           <h2>택배사 선택</h2>
-          <select name="" id="" onChange={e=>{handleSelect(e)}}>
-            {courier.map(el=><option>{el.name}</option>)}
+          <select name="" id="" onChange={handleSelect}>
+            {(select)&&select.map(el=><option>{el.name}</option>)}
           </select>
         </div>
         <div>
