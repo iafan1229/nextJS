@@ -1,0 +1,214 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol,
+ul {
+	list-style: none;
+}
+blockquote,
+q {
+	quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+ul {
+	padding-top: 40px;
+}
+
+/*custom css*/
+/* https://codepen.io/RockStarwind/pen/WmGwwp */
+
+body {
+	height: 100%;
+	background-color: #345;
+	background-image: linear-gradient(to bottom, #0009, transparent);
+	background-repeat: no-repeat;
+	color: #fff;
+	font-family: 'sans-serif';
+}
+a {
+	color: #fff;
+	text-decoration: none;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Inconsolata|Lato:300,400,700');
+button {
+	background-color: #4caf50; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	border-radius: 15px;
+	cursor: pointer;
+}
+
+header,
+#wrap,
+footer {
+	max-width: 400px;
+	margin: 0 auto;
+	text-align: center;
+	font-family: 'Inconsolata', monospace;
+}
+footer {
+	margin-top: 300px;
+}
+h1 {
+	padding-top: 30px;
+	font-size: 30px;
+}
+.coins {
+	li {
+		background: #ffffff06;
+		border-radius: 3px;
+		cursor: pointer;
+		height: 40px;
+		margin-bottom: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: all 0.2s;
+		span {
+			display: inline-block;
+			width: 15px;
+			height: 15px;
+			margin-right: 10px;
+			vertical-align: middle;
+			img {
+				width: 100%;
+			}
+		}
+		&:hover {
+			background: rgb(99, 169, 215);
+
+			a {
+				color: rgb(55, 55, 192);
+			}
+		}
+	}
+}
+
+.coinInfo {
+}
+.coinTickers {
+	padding-bottom: 30px;
+}
