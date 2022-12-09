@@ -9,27 +9,10 @@ export default function Home(props: any) {
 	const [coinInfo2, setCoinInfo2] = useState<any>(null);
 	const route = useRouter();
 	const {
-		query: { id, name },
+		query: { name, des, rank, site, symbol, max, total },
 	} = route;
 
-	useEffect(() => {
-		(async function () {
-			let res = await fetch(`https://api.coinpaprika.com/v1/tickers/${id}`);
-			let result = await res.json();
-
-			setCoinInfo(result);
-		})();
-		(async function () {
-			let res = await fetch(`https://api.coinpaprika.com/v1/coins/${id}`);
-			let result = await res.json();
-
-			setCoinInfo2(result);
-		})();
-	}, []);
-
-	useEffect(() => {
-		console.log(coinInfo2);
-	}, [coinInfo2]);
+	console.log(site);
 	return (
 		<>
 			{!coinInfo?.error && !coinInfo2?.error ? (
@@ -41,29 +24,23 @@ export default function Home(props: any) {
 						<ul className='coinTickers'>
 							<li>
 								<span>Rank</span>
-								<span>{coinInfo?.rank}</span>
+								<span>{rank}</span>
 							</li>
 							<li>
-								<span>Symbol</span> <span>{coinInfo?.symbol}</span>
+								<span>Symbol</span> <span>{symbol}</span>
 							</li>
 							<li>
-								<span>Total Supply</span> <span>{coinInfo?.total_supply}</span>
+								<span>Total Supply</span> <span>{total}</span>
 							</li>
 							<li>
 								<span>Max Supply</span>
-								<span>{coinInfo?.max_supply}</span>
+								<span>{parseFloat(max)}</span>
 							</li>
 						</ul>
 					</li>
-					<li>{coinInfo2?.description}</li>
+					<li>{des?.substring(0, 600) + '...'}</li>
 					<li className='coinLink'>
-						{coinInfo2?.links ? (
-							<Link href={`${coinInfo2.links.website[0]}`}>
-								{coinInfo2.links.website[0]}
-							</Link>
-						) : (
-							'No Site'
-						)}
+						<Link href={`${site}`}>{'See more Info : ' + site}</Link>
 					</li>
 				</ul>
 			) : (
@@ -75,24 +52,37 @@ export default function Home(props: any) {
 	);
 }
 
-// async function getTickers() {
-// 	let res = await fetch(`https://api.coinpaprika.com/v1/tickers/${id}`);
-// 	let result = await res.json();
-// 	return result;
-// }
-// async function getCoins() {
-// 	let res = await fetch(`https://api.coinpaprika.com/v1/coins/${id}`);
-// 	let result = await res.json();
-// 	return result;
-// }
-// // export const getStaticPaths = async () => {
-// // 	return {
-// // 		paths: [{ params: { id: 1 } }],
-// // 		fallback: true,
-// // 	};
-// // };
+async function getTickers() {
+	let res = await fetch(`https://api.coinpaprika.com/v1/tickers/${id}`);
+	let result = await res.json();
+	return result;
+}
+async function getCoins() {
+	let res = await fetch(`https://api.coinpaprika.com/v1/coins/${id}`);
+	let result = await res.json();
+	return result;
+}
+// export const getStaticPaths = async () => {
+// 	return {
+// 		paths: [{ params: { id: 1 } }],
+// 		fallback: true,
+// 	};
+// };
 
-// export async function getStaticProps() {
+// export async function getStaticPaths() {
+//   return {
+//     paths: [
+//       // String variant:
+//       '/blog/first-post',
+//       // Object variant:
+//       { params: { slug: 'second-post' } },
+//     ],
+//     fallback: true,
+//   }
+// }
+
+// export async function getStaticProps(context) {
+// 	console.log(context);
 // 	let result1 = await getTickers();
 // 	let result2 = await getCoins();
 // 	return {
