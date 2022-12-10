@@ -62,9 +62,10 @@ async function getCoins() {
 	let result = await res.json();
 	return result;
 }
-// export const getStaticPaths = async () => {
+// export const getStaticPaths = async (a) => {
+// 	console.log(a);
 // 	return {
-// 		paths: [{ params: { id: 1 } }],
+// 		paths: [{ params: { name: a } }],
 // 		fallback: true,
 // 	};
 // };
@@ -81,13 +82,15 @@ async function getCoins() {
 //   }
 // }
 
-// export async function getStaticProps(context) {
-// 	console.log(context);
-// 	let result1 = await getTickers();
-// 	let result2 = await getCoins();
 // 	return {
-// 		props: {
-// 			data: [result1, result2],
-// 		},
+// 		Datas,
+// 		fallback: false,
+// 	};
+// }
+
+// export async function getStaticProps({ Datas }) {
+// 	console.log(Datas);
+// 	return {
+// 		props: {},
 // 	};
 // }

@@ -250,6 +250,7 @@ h1 {
 				width: calc(70%);
 				border-bottom: 1px solid rgb(4, 46, 74);
 				padding-bottom: 5px;
+				margin-bottom: 5px;
 			}
 			&:last-child {
 				padding-top: 5px;
@@ -261,4 +262,14 @@ h1 {
 .msg {
 	font-size: 25px;
 	padding: 5vh 0;
+}
+
+.loading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 30px;
+	height: 100vh;
+	flex-direction: column;
 }
