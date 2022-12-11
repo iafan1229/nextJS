@@ -21,9 +21,6 @@ const nextConfig = {
 				source: '/api/coins',
 				destination: `https://min-api.cryptocompare.com/data/all/coinlist?f459026d79b9444ed29576f403c8ed3c734a41d3b4ef1850f99c8c9f40a4bc72`,
 			},
-			// {
-			//   source:
-			// }
 		];
 	},
 };

@@ -1,96 +1,74 @@
+import { Router } from 'express';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState, useRef, use } from 'react';
-// import '../styles/style.scss';
+import { useQuery } from 'react-query';
+import { fetchCoinInfo } from '../components/api';
 
-export default function Home(props: any) {
-	console.log(props);
-	const [coinInfo, setCoinInfo] = useState<any>(null);
-	const [coinInfo2, setCoinInfo2] = useState<any>(null);
+export default function Home() {
 	const route = useRouter();
 	const {
-		query: { name, des, rank, site, symbol, max, total },
+		query: { name },
 	} = route;
+	const { isLoading: InfoLoad, data: InfoData } = useQuery(
+		['coin', route.query.name],
+		() => fetchCoinInfo(route.query.name)
+	);
 
-	console.log(site);
+	console.log(InfoData);
+
 	return (
 		<>
-			{!coinInfo?.error && !coinInfo2?.error ? (
+			<button onClick={() => route.push('/')}>Go Back</button>
+			{InfoLoad ? (
+				<p className='msg'>Loading...</p>
+			) : (
 				<ul className='coinInfo'>
 					<li>
-						<h2>{name}</h2>
+						<h2>{InfoData?.Data[name].FullName}</h2>
 					</li>
 					<li>
 						<ul className='coinTickers'>
 							<li>
 								<span>Rank</span>
-								<span>{rank}</span>
+								<span>{InfoData?.Data[name].SortOrder}</span>
 							</li>
 							<li>
-								<span>Symbol</span> <span>{symbol}</span>
+								<span>Symbol</span> <span>{InfoData?.Data[name].Symbol}</span>
 							</li>
 							<li>
-								<span>Total Supply</span> <span>{total}</span>
+								<span>Total Supply</span>{' '}
+								<span>{InfoData?.Data[name].CirculatingSupply}</span>
 							</li>
 							<li>
 								<span>Max Supply</span>
-								<span>{parseFloat(max)}</span>
+								<span>{parseFloat(InfoData?.Data[name].MaxSupply)}</span>
 							</li>
 						</ul>
 					</li>
-					<li>{des?.substring(0, 600) + '...'}</li>
+					<li>{InfoData?.Data[name].Description?.substring(0, 600) + '...'}</li>
 					<li className='coinLink'>
-						<Link href={`${site}`}>{'See more Info : ' + site}</Link>
+						{InfoData?.Data[name].AssetWebsiteUrl ? (
+							<Link href={`${InfoData?.Data[name].AssetWebsiteUrl}`}>
+								{'See more Info : ' + InfoData?.Data[name].AssetWebsiteUrl}
+							</Link>
+						) : null}
 					</li>
 				</ul>
-			) : (
-				<p className='msg'>Loading...</p>
 			)}
 
-			<button onClick={() => route.push('/')}>Go Back</button>
+			<div></div>
+			<button onClick={() => route.push(`${name}/chart`)}></button>
 		</>
 	);
 }
 
-async function getTickers() {
-	let res = await fetch(`https://api.coinpaprika.com/v1/tickers/${id}`);
-	let result = await res.json();
-	return result;
-}
-async function getCoins() {
-	let res = await fetch(`https://api.coinpaprika.com/v1/coins/${id}`);
-	let result = await res.json();
-	return result;
-}
-// export const getStaticPaths = async (a) => {
-// 	console.log(a);
-// 	return {
-// 		paths: [{ params: { name: a } }],
-// 		fallback: true,
-// 	};
-// };
+/*
+https://min-api.cryptocompare.com/data/histominute?fsym=BTC&tsym=USD&limit=10&aggregate=3&e=CCCAGG
+https://min-api.cryptocompare.com/documentation?key=Historical&cat=dataHistoday
 
-// export async function getStaticPaths() {
-//   return {
-//     paths: [
-//       // String variant:
-//       '/blog/first-post',
-//       // Object variant:
-//       { params: { slug: 'second-post' } },
-//     ],
-//     fallback: true,
-//   }
-// }
+https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=10
 
-// 	return {
-// 		Datas,
-// 		fallback: false,
-// 	};
-// }
+https://ohlcv-api.nomadcoders.workers.dev/?coinId=btc-bitcoin
 
-// export async function getStaticProps({ Datas }) {
-// 	console.log(Datas);
-// 	return {
-// 		props: {},
-// 	};
-// }
+*/
