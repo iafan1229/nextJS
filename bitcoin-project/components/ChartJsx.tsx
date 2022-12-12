@@ -1,18 +1,17 @@
 import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
+import { fetchChart, fetchPrice } from '../components/api';
+import React, { useEffect, useState, useRef, use } from 'react';
 import { useQuery } from 'react-query';
-import { fetchChart } from '../components/api';
-import { useEffect, useState } from 'react';
-
 Chart.register(...registerables);
 
-export default function Home() {
+export default function ChartJsx({ name }) {
 	const [labels, setLabels] = useState(null);
 	const [close, setClose] = useState(null);
 	const [high, setHigh] = useState(null);
 	const { isLoading: chartLoad, data: chartData } = useQuery(
-		['chart', 'BTC'],
-		() => fetchChart('BTC')
+		['chart', name],
+		() => fetchChart(name)
 	);
 
 	function Unix_timestamp(t) {
@@ -20,26 +19,26 @@ export default function Home() {
 		var year = date.getFullYear();
 		var month = '0' + (date.getMonth() + 1);
 		var day = '0' + date.getDate();
-		return year + '-' + month.substr(-2) + '-' + day.substr(-2);
+		return month.substr(-2) + '-' + day.substr(-2);
 	}
 
 	useEffect(() => {
 		setLabels(
-			chartData?.Data.Data.map((el, idx) => {
+			chartData?.Data.Data?.map((el, idx) => {
 				return Unix_timestamp(el.time);
 			})
 		);
 		setClose(
-			chartData?.Data.Data.map((el, idx) => {
+			chartData?.Data.Data?.map((el, idx) => {
 				return el.close;
 			})
 		);
 		setHigh(
-			chartData?.Data.Data.map((el, idx) => {
+			chartData?.Data.Data?.map((el, idx) => {
 				return el.high;
 			})
 		);
-	}, [chartData]);
+	}, [chartData, name]);
 
 	const data = {
 		labels: labels,
@@ -59,15 +58,19 @@ export default function Home() {
 			},
 		],
 	};
-
 	return (
-		labels &&
-		close &&
-		high && (
-			<>
-				<p>Label 클릭시 해당데이터는 blocking 처리됩니다</p>
-				<Line data={data} />
-			</>
-		)
+		<div className='chart-wrap'>
+			{labels && close && high ? (
+				<>
+					<p className='des'>
+						2주간의 코인 종가<br></br>
+						<span>(Label 클릭시 해당데이터는 blocking 처리됩니다)</span>
+					</p>
+					<Line data={data} />
+				</>
+			) : (
+				<p>Chart Loading...</p>
+			)}
+		</div>
 	);
 }

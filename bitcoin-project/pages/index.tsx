@@ -28,6 +28,9 @@ export default function Home() {
 	}, [rank]);
 	return (
 		<>
+			<p style={{ margin: '10px 0' }}>
+				거래소의 탑티어 코인을 매칭하여 자동 순위매기는 시스템
+			</p>
 			{isLoading ? (
 				<div className='loading'>
 					<p>코인 데이터를 패칭하여 순위를 매기는 중입니다</p>
