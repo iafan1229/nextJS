@@ -84,11 +84,11 @@ time,
 mark,
 audio,
 video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	vertical-align: baseline;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -102,174 +102,193 @@ hgroup,
 menu,
 nav,
 section {
-	display: block;
+    display: block;
 }
 body {
-	line-height: 1;
+    line-height: 1;
 }
 ol,
 ul {
-	list-style: none;
+    list-style: none;
 }
 blockquote,
 q {
-	quotes: none;
+    quotes: none;
 }
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-	content: '';
-	content: none;
+    content: '';
+    content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
 }
 
 ul {
-	padding-top: 40px;
+    padding-top: 40px;
 }
 
 /*custom css*/
 /* https://codepen.io/RockStarwind/pen/WmGwwp */
 
 body {
-	height: 100%;
-	background-color: #345;
-	background-image: linear-gradient(to bottom, #0009, transparent);
-	background-repeat: no-repeat;
-	color: #fff;
-	font-family: 'sans-serif';
+    height: 100%;
+    background-color: #345;
+    background-image: linear-gradient(to bottom, #0009, transparent);
+    background-repeat: no-repeat;
+    color: #fff;
+    font-family: 'sans-serif';
 }
 a {
-	color: #fff;
-	text-decoration: none;
+    color: #fff;
+    text-decoration: none;
 }
 
 @import url('https://fonts.googleapis.com/css?family=Inconsolata|Lato:300,400,700');
 button {
-	background-color: #4caf50; /* Green */
-	border: none;
-	color: white;
-	padding: 15px 32px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	font-size: 16px;
-	border-radius: 15px;
-	cursor: pointer;
+    background-color: #4caf50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 15px;
+    cursor: pointer;
 }
 
 header,
 #wrap,
 footer {
-	max-width: 600px;
-	margin: 0 auto;
-	text-align: center;
-	font-family: 'Inconsolata', monospace;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Inconsolata', monospace;
 }
 footer {
-	margin-top: 300px;
+    margin-top: 300px;
 }
 h1 {
-	padding-top: 30px;
-	font-size: 30px;
-	color: skyblue;
+    padding-top: 30px;
+    font-size: 30px;
+    color: skyblue;
 }
 .coins {
-	li {
-		background: #ffffff06;
-		border-radius: 3px;
-		cursor: pointer;
-		height: 40px;
-		margin-bottom: 30px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		transition: all 0.2s;
-		a {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			width: 100%;
-			height: 100%;
-		}
-		span {
-			display: inline-block;
-			width: 15px;
-			height: 15px;
-			margin-right: 10px;
-			vertical-align: middle;
-			img {
-				width: 100%;
-			}
-		}
-		&:hover {
-			background: rgb(99, 169, 215);
+    li {
+        background: #ffffff06;
+        border-radius: 3px;
+        cursor: pointer;
+        height: 40px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.2s;
+        a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        span {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            margin-right: 10px;
+            vertical-align: middle;
+            img {
+                width: 100%;
+            }
+        }
+        &:hover {
+            background: rgb(99, 169, 215);
 
-			a {
-				color: rgb(55, 55, 192);
-			}
-		}
-	}
+            a {
+                color: rgb(55, 55, 192);
+            }
+        }
+    }
 }
 
 .coinInfo {
-	padding: 30px 0;
-	h2 {
-		font-size: 24px;
-		padding: 20px 0;
-	}
-	.coinLink {
-		padding-top: 20px;
-	}
+    padding: 30px 0;
+    h2 {
+        font-size: 24px;
+        padding: 20px 0;
+    }
+    .coinLink {
+        padding-top: 20px;
+    }
 }
 .coinTickers {
-	background-color: #123;
-	background-image: linear-gradient(to bottom, #0003, transparent);
-	border-bottom: 1px solid #0003;
-	box-shadow: 0 0 32px #0003;
-	padding-bottom: 30px;
-	margin-bottom: 30px;
-	display: flex;
-	flex-wrap: wrap;
-	li {
-		flex-basis: 50%;
-		height: 100px;
-		display: flex;
-		flex-wrap: wrap;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		font-size: 20px;
-		line-height: 30px;
-		span {
-			display: block;
-			&:first-child {
-				width: calc(70%);
-				border-bottom: 1px solid rgb(4, 46, 74);
-				padding-bottom: 5px;
-				margin-bottom: 5px;
-			}
-			&:last-child {
-				padding-top: 5px;
-			}
-		}
-	}
+    background-color: #123;
+    background-image: linear-gradient(to bottom, #0003, transparent);
+    border-bottom: 1px solid #0003;
+    box-shadow: 0 0 32px #0003;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    li {
+        flex-basis: 50%;
+        height: 100px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        line-height: 30px;
+        span {
+            display: block;
+            &:first-child {
+                width: calc(70%);
+                border-bottom: 1px solid rgb(4, 46, 74);
+                padding-bottom: 5px;
+                margin-bottom: 5px;
+            }
+            &:last-child {
+                padding-top: 5px;
+            }
+        }
+    }
 }
 
 .msg {
-	font-size: 25px;
-	padding: 5vh 0;
+    font-size: 25px;
+    padding: 5vh 0;
 }
 
 .loading {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	gap: 30px;
-	height: 100vh;
-	flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.tab{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    gap: 10px;
+    li {
+        button {
+            background: #ffffff20;
+            &.on {
+                background: rgb(19, 29, 61);
+            }
+        }
+    }
+}
+.tab-content{
+    
 }

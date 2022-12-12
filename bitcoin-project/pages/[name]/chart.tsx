@@ -1,3 +1,3 @@
-export default function chart() {
-	return <div></div>;
+export default function chart({children}) {
+	return <>{children}</>;
 }
