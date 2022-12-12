@@ -4,8 +4,6 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState, useRef, use } from 'react';
 import { useQuery } from 'react-query';
 import { fetchCoinInfo } from '../components/api';
-import Price from '../components/Price';
-import Chart from '../components/Chart';
 
 
 export default function Home() {
