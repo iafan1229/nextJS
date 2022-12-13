@@ -3,8 +3,10 @@ import React, { useEffect, useState, useRef, use } from 'react';
 import { useQuery } from 'react-query';
 // import '../styles/style.scss';
 import { fetchCoins } from '../components/api';
+import Global from '../components/Global';
 
 export default function Home() {
+	
 	const { isLoading, data } = useQuery('allCoins', fetchCoins);
 	const [rank, setRank] = useState(null);
 
@@ -23,11 +25,10 @@ export default function Home() {
 		}
 	}, [data]);
 
-	useEffect(() => {
-		console.log(rank);
-	}, [rank]);
+
 	return (
 		<>
+			<Global/>
 			<p style={{ margin: '10px 0' }}>
 				거래소의 탑티어 코인을 매칭하여 자동 순위매기는 시스템
 			</p>

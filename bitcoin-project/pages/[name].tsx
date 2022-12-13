@@ -3,9 +3,10 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState, useRef, use } from 'react';
 import { useQuery } from 'react-query';
 import { fetchCoinInfo } from '../components/api';
-
 import ChartJsx from '../components/ChartJsx';
 import Price from '../components/Price';
+import Global from '../components/Global';
+import styled from 'styled-components';
 
 export default function Home() {
 	const [tab, setTab] = useState(true);
@@ -24,12 +25,32 @@ export default function Home() {
 			setTab(false);
 		}
 	};
+	const CoinInfo = styled.ul.attrs({className:'coinInfo'})`
+		li {
+			span{
+				&:first-child {
+					color: ${props=> props.theme.pointColor}
+				}
+			}
+		}
+	`
+	const TabBtn = styled.ul.attrs({className: 'tab'})`
+		li {
+			&.on {
+				// background: #{props=>}
+			}
+			button {
+				background: ${props=>props.theme.btnColor}
+			}
+		}
+	`
 	return (
 		<>
+			<Global/>
 			{InfoLoad ? (
 				<p className='msg'>Loading...</p>
 			) : (
-				<ul className='coinInfo'>
+				<CoinInfo>
 					<li>
 						<h2>{InfoData?.Data[name].FullName}</h2>
 					</li>
@@ -60,30 +81,28 @@ export default function Home() {
 							</Link>
 						) : null}
 					</li>
-				</ul>
+				</CoinInfo>
 			)}
+				<TabBtn>
+					<li>
+						<button className={tab ? 'on' : ''} onClick={(el) => handleTab(el)}>
+							{'Chart'}
+						</button>
+					</li>
+					<li>
+						<button className={!tab ? 'on' : ''} onClick={(el) => handleTab(el)}>
+							{'Price'}
+						</button>
+					</li>
+				</TabBtn>
+				<div className='tab-content'>
+					{tab ? <ChartJsx name={name} /> : <Price name={name} />}
+				</div>
 
-			<ul className='tab'>
-				<li>
-					<button className={tab ? 'on' : ''} onClick={(el) => handleTab(el)}>
-						{'Chart'}
-					</button>
-				</li>
-				<li>
-					<button className={!tab ? 'on' : ''} onClick={(el) => handleTab(el)}>
-						{'Price'}
-					</button>
-				</li>
-			</ul>
-			<a />
-
-			<div className='tab-content'>
-				{tab ? <ChartJsx name={name} /> : <Price name={name} />}
-			</div>
-
-			<button style={{ margin: '20px 0' }} onClick={() => route.push('/')}>
-				Go Back
-			</button>
+				<button style={{ margin: '20px 0' }} onClick={() => route.push('/')}>
+					Go Back
+				</button>
+			
 		</>
 	);
 

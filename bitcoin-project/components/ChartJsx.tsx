@@ -3,9 +3,12 @@ import { Chart, registerables } from 'chart.js';
 import { fetchChart, fetchPrice } from '../components/api';
 import React, { useEffect, useState, useRef, use } from 'react';
 import { useQuery } from 'react-query';
+import styled from 'styled-components';
+
 Chart.register(...registerables);
 
 export default function ChartJsx({ name }) {
+	
 	const [labels, setLabels] = useState(null);
 	const [close, setClose] = useState(null);
 	const [high, setHigh] = useState(null);
@@ -58,14 +61,21 @@ export default function ChartJsx({ name }) {
 			},
 		],
 	};
+
+	const Des = styled.p.attrs({className:'des'})`
+		color: ${props=>props.theme.pointColor} !important;
+		span {
+			color: ${props=>props.theme.textColor} !important;
+		}
+	`
 	return (
 		<div className='chart-wrap'>
 			{labels && close && high ? (
 				<>
-					<p className='des'>
+					<Des>
 						2주간의 코인 종가<br></br>
 						<span>(Label 클릭시 해당데이터는 blocking 처리됩니다)</span>
-					</p>
+					</Des>
 					<Line data={data} />
 				</>
 			) : (
