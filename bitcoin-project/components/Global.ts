@@ -9,6 +9,11 @@ const Global = createGlobalStyle`
 		a{
 			color:${props=>props.theme.textColor};
 		}
+		.coins {
+			li {
+				box-shadow: ${props=>props.theme.boxShadow}
+			}
+		}
 	`
 
 export default Global;

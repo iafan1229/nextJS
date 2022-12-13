@@ -6,6 +6,7 @@ declare module "styled-components" {
     bgColor: string;
     bgImg: string;
     btnColor: string;
-    pointColor?:string;
+    pointColor:string;
+    boxShadow?:string;
   }
 }
