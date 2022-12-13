@@ -1,9 +1,18 @@
-import { fetchPrice } from '../components/api';
+import { fetchPrice } from './react-query/api';
 import React, { useEffect, useState, useRef, use } from 'react';
 import { useQuery } from 'react-query';
 
-export default function Price({ name }) {
-	const [Data, setData] = useState(null);
+interface Name{
+	name: string
+}
+
+interface Obj {
+	USD: {
+		USD: string | null
+	}
+}
+export default function Price({ name }:Name) {
+	const [Data, setData] = useState<Obj>(null);
 
 	const { isLoading: priceLoad, data: priceData } = useQuery(
 		['price', name],
@@ -14,9 +23,8 @@ export default function Price({ name }) {
 	useEffect(() => {
 		if (!priceLoad) {
 			const {
-				RAW: { [name]: USD },
+				RAW: { [name]:USD }
 			} = priceData;
-
 			setData(USD.USD);
 		}
 	}, [priceLoad]);

@@ -1,26 +1,30 @@
 import Link from 'next/link';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState, useRef, use } from 'react';
+import React, { useEffect, useState, useRef, use, ButtonHTMLAttributes } from 'react';
 import { useQuery } from 'react-query';
-import { fetchCoinInfo } from '../components/api';
+import { fetchCoinInfo } from '../components/react-query/api';
 import ChartJsx from '../components/ChartJsx';
 import Price from '../components/Price';
 import Global from '../components/Global';
 import styled from 'styled-components';
 
+
 export default function Home() {
 	const [tab, setTab] = useState(true);
 	const route = useRouter();
-	const {
-		query: { name },
-	} = route;
+	//const {query: { name }}= route;
+	const {query} = route;
+	
+	const name = query.name as string;
+
 	const { isLoading: InfoLoad, data: InfoData } = useQuery(['coin', name], () =>
 		fetchCoinInfo(name)
 	);
 
-	const handleTab = (e) => {
-		if (e.target.textContent === 'Chart') {
+	const handleTab = (e:React.MouseEvent) => {
+		const alias = e.target as HTMLElement;
+		if (alias.textContent === 'Chart') {
 			setTab(true);
 		} else {
 			setTab(false);
@@ -45,6 +49,7 @@ export default function Home() {
 			}
 		}
 	`
+
 	return (
 		<>
 			<Head>
@@ -109,14 +114,4 @@ export default function Home() {
 			
 		</>
 	);
-
-	/*
-https://min-api.cryptocompare.com/data/histominute?fsym=BTC&tsym=USD&limit=10&aggregate=3&e=CCCAGG
-https://min-api.cryptocompare.com/documentation?key=Historical&cat=dataHistoday
-
-https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=10
-
-https://ohlcv-api.nomadcoders.workers.dev/?coinId=btc-bitcoin
-
-*/
 }

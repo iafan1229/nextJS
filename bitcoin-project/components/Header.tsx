@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { RecoilRoot, useRecoilState, useRecoilValue } from 'recoil';
-import { themeState } from '../components/store';
+import { themeState } from './recoil/store';
 import styled from 'styled-components';
 import Image from 'next/image';
 

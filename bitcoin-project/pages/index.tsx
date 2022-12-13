@@ -1,17 +1,22 @@
 import Link from 'next/link';
 import Head from 'next/head';
-import React, { useEffect, useState, useRef, use } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
-// import '../styles/style.scss';
-import { fetchCoins } from '../components/api';
+import { fetchCoins } from '../components/react-query/api';
 import Global from '../components/Global';
-import { RecoilRoot, useRecoilState, useRecoilValue } from 'recoil';
-import { themeState } from '../components/store';
+
+interface IData {
+	FullName: string,
+	Name: string,
+	[name:string]: string,
+	SortOrder: string
+}
 
 export default function Home() {
 	
 	const { isLoading, data } = useQuery('allCoins', fetchCoins);
-	const [rank, setRank] = useState(null);
+	const [rank, setRank] = useState<IData[]|null>(null);
+
 
 	useEffect(() => {
 		if (data) {
@@ -20,11 +25,9 @@ export default function Home() {
 				if (data.Data[key].SortOrder <= 20) {
 					arr.push(data.Data[key]);
 				}
-				// if (key === 'BTC') console.log(result.Data[key].SortOrder);
 			}
 			setRank(arr);
 			arr.sort((a, b) => a.SortOrder - Number(b.SortOrder));
-			// setRank(a);
 		}
 	}, [data]);
 

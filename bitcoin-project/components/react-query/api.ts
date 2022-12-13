@@ -28,3 +28,13 @@ export async function fetchPrice(name) {
 	let result = await res.json();
 	return result;
 }
+
+/*
+https://min-api.cryptocompare.com/data/histominute?fsym=BTC&tsym=USD&limit=10&aggregate=3&e=CCCAGG
+https://min-api.cryptocompare.com/documentation?key=Historical&cat=dataHistoday
+
+https://min-api.cryptocompare.com/data/v2/histoday?fsym=BTC&tsym=USD&limit=10
+
+https://ohlcv-api.nomadcoders.workers.dev/?coinId=btc-bitcoin
+
+*/

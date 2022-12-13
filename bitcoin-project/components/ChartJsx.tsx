@@ -1,6 +1,6 @@
 import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
-import { fetchChart, fetchPrice } from '../components/api';
+import { fetchChart, fetchPrice } from './react-query/api';
 import React, { useEffect, useState, useRef, use } from 'react';
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
