@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState, useRef, use } from 'react';
 import { useQuery } from 'react-query';
@@ -46,6 +47,9 @@ export default function Home() {
 	`
 	return (
 		<>
+			<Head>
+				<title>Ha Young Bitcoin - ${name}</title>
+			</Head>
 			<Global/>
 			{InfoLoad ? (
 				<p className='msg'>Loading...</p>

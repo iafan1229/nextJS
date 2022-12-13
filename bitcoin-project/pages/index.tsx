@@ -1,9 +1,12 @@
 import Link from 'next/link';
+import Head from 'next/head';
 import React, { useEffect, useState, useRef, use } from 'react';
 import { useQuery } from 'react-query';
 // import '../styles/style.scss';
 import { fetchCoins } from '../components/api';
 import Global from '../components/Global';
+import { RecoilRoot, useRecoilState, useRecoilValue } from 'recoil';
+import { themeState } from '../components/store';
 
 export default function Home() {
 	
@@ -28,6 +31,9 @@ export default function Home() {
 
 	return (
 		<>
+			<Head>
+				<title>Ha young BitCoin - Top tier 20 coins!</title>
+			</Head>
 			<Global/>
 			<p style={{ margin: '10px 0' }}>
 				거래소의 탑티어 코인을 매칭하여 자동 순위매기는 시스템

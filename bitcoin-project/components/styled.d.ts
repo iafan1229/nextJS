@@ -8,5 +8,6 @@ declare module "styled-components" {
     btnColor: string;
     pointColor:string;
     boxShadow?:string;
+    btnbg?: boolean;
   }
 }
