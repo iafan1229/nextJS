@@ -1,15 +1,39 @@
 import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import { fetchChart, fetchPrice } from './react-query/api';
-import React, { useEffect, useState, useRef, use } from 'react';
+import React, { useEffect, useState} from 'react';
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
 
 Chart.register(...registerables);
 
-export default function ChartJsx({ name }) {
+interface IProps {
+	name: string
+}
+
+interface Label {
+	time:number,
+	close:number,
+	high:number
+}
+
+
+interface Labels {
+	chartData?: {
+		Data: {
+			Data?: {
+				time:number,
+				close:number,
+				high:number
+			}
+		}
+	}
+}
+
+
+export default function ChartJsx({ name }:IProps) {
 	
-	const [labels, setLabels] = useState(null);
+	const [labels, setLabels] = useState<Labels[]|undefined>([]);
 	const [close, setClose] = useState(null);
 	const [high, setHigh] = useState(null);
 	const { isLoading: chartLoad, data: chartData } = useQuery(
@@ -17,7 +41,7 @@ export default function ChartJsx({ name }) {
 		() => fetchChart(name)
 	);
 
-	function Unix_timestamp(t) {
+	function Unix_timestamp(t:number) {
 		var date = new Date(t * 1000);
 		var year = date.getFullYear();
 		var month = '0' + (date.getMonth() + 1);
@@ -27,17 +51,17 @@ export default function ChartJsx({ name }) {
 
 	useEffect(() => {
 		setLabels(
-			chartData?.Data.Data?.map((el, idx) => {
+			chartData?.Data.Data?.map((el:Label, idx:number) => {
 				return Unix_timestamp(el.time);
 			})
 		);
 		setClose(
-			chartData?.Data.Data?.map((el, idx) => {
+			chartData?.Data.Data?.map((el:Label, idx:number) => {
 				return el.close;
 			})
 		);
 		setHigh(
-			chartData?.Data.Data?.map((el, idx) => {
+			chartData?.Data.Data?.map((el:Label, idx:number) => {
 				return el.high;
 			})
 		);

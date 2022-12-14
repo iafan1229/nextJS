@@ -6,7 +6,7 @@ import { useQuery } from 'react-query';
 import { fetchCoinInfo } from '../components/react-query/api';
 import ChartJsx from '../components/ChartJsx';
 import Price from '../components/Price';
-import Global from '../components/Global';
+import Global from '../components/style/Global';
 import styled from 'styled-components';
 
 

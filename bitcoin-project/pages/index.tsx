@@ -3,7 +3,7 @@ import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { fetchCoins } from '../components/react-query/api';
-import Global from '../components/Global';
+import Global from '../components/style/Global';
 
 interface IData {
 	FullName: string,
@@ -16,7 +16,8 @@ export default function Home() {
 	
 	const { isLoading, data } = useQuery('allCoins', fetchCoins);
 	const [rank, setRank] = useState<IData[]|null>(null);
-
+const a =
+{1:3}
 
 	useEffect(() => {
 		if (data) {

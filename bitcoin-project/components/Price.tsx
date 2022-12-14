@@ -7,27 +7,30 @@ interface Name{
 }
 
 interface Obj {
-	USD: {
-		USD: string | null
-	}
+	PRICE: number,
+	CHANGE24HOUR: number,
+	CHANGEHOUR: number,
+	TOPTIERVOLUME24HOUR: number
 }
 export default function Price({ name }:Name) {
-	const [Data, setData] = useState<Obj>(null);
+
+	const [Data, setData] = useState<Obj|null>(null);
 
 	const { isLoading: priceLoad, data: priceData } = useQuery(
 		['price', name],
 		() => fetchPrice(name)
 	);
-
-	//priceData.RAW[name].USD.PRICE
+	
 	useEffect(() => {
 		if (!priceLoad) {
 			const {
-				RAW: { [name]:USD }
+				RAW: {[name]: {USD}}
 			} = priceData;
-			setData(USD.USD);
+			//priceData.RAW[name].USD.PRICE
+			setData(USD)
 		}
 	}, [priceLoad]);
+
 	return (
 		<div className='priceBox'>
 			{!priceLoad && Data ? (
