@@ -1,3 +1,5 @@
+'use client'
+
 import { Line } from 'react-chartjs-2';
 import { Chart, registerables } from 'chart.js';
 import { fetchChart, fetchPrice } from './react-query/api';
@@ -5,6 +7,12 @@ import React, { useEffect, useState} from 'react';
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
 
+const Des = styled.p.attrs({className:'des'})`
+	color: ${props=>props.theme.pointColor} !important;
+	span {
+		color: ${props=>props.theme.textColor} !important;
+	}
+`
 Chart.register(...registerables);
 
 interface IProps {
@@ -31,7 +39,7 @@ interface Labels {
 }
 
 
-export default function ChartJsx({ name }:IProps) {
+function ChartJsx({ name }:IProps) {
 	
 	const [labels, setLabels] = useState<Labels[]|undefined>([]);
 	const [close, setClose] = useState(null);
@@ -86,12 +94,7 @@ export default function ChartJsx({ name }:IProps) {
 		],
 	};
 
-	const Des = styled.p.attrs({className:'des'})`
-		color: ${props=>props.theme.pointColor} !important;
-		span {
-			color: ${props=>props.theme.textColor} !important;
-		}
-	`
+	
 	return (
 		<div className='chart-wrap'>
 			{labels && close && high ? (
@@ -108,3 +111,5 @@ export default function ChartJsx({ name }:IProps) {
 		</div>
 	);
 }
+
+export default React.memo(ChartJsx)

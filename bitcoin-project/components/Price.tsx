@@ -12,7 +12,9 @@ interface Obj {
 	CHANGEHOUR: number,
 	TOPTIERVOLUME24HOUR: number
 }
-export default function Price({ name }:Name) {
+
+function Price({ name }:Name) {
+	console.log('render')
 
 	const [Data, setData] = useState<Obj|null>(null);
 
@@ -61,3 +63,5 @@ export default function Price({ name }:Name) {
 		</div>
 	);
 }
+
+export default React.memo(Price)

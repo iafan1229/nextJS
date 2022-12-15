@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -9,7 +11,25 @@ import Price from '../components/Price';
 import Global from '../components/style/Global';
 import styled from 'styled-components';
 
-
+const CoinInfo = styled.ul.attrs({className:'coinInfo'})`
+	li {
+		span{
+			&:first-child {
+				color: ${props=> props.theme.pointColor}
+			}
+		}
+	}
+`
+const TabBtn = styled.ul.attrs({className: 'tab'})`
+	li {
+		&.on {
+			// background: #{props=>}
+		}
+		button {
+			background: ${props=>props.theme.btnColor}
+		}
+	}
+`
 export default function Home() {
 	const [tab, setTab] = useState(true);
 	const route = useRouter();
@@ -30,25 +50,7 @@ export default function Home() {
 			setTab(false);
 		}
 	};
-	const CoinInfo = styled.ul.attrs({className:'coinInfo'})`
-		li {
-			span{
-				&:first-child {
-					color: ${props=> props.theme.pointColor}
-				}
-			}
-		}
-	`
-	const TabBtn = styled.ul.attrs({className: 'tab'})`
-		li {
-			&.on {
-				// background: #{props=>}
-			}
-			button {
-				background: ${props=>props.theme.btnColor}
-			}
-		}
-	`
+	
 
 	return (
 		<>

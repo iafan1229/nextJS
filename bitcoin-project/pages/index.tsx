@@ -16,8 +16,7 @@ export default function Home() {
 	
 	const { isLoading, data } = useQuery('allCoins', fetchCoins);
 	const [rank, setRank] = useState<IData[]|null>(null);
-const a =
-{1:3}
+
 
 	useEffect(() => {
 		if (data) {
