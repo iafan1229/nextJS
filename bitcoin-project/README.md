@@ -1,34 +1,33 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+<img src="https://postfiles.pstatic.net/MjAyMjEyMTJfNjEg/MDAxNjcwODQ3MzAzNjkw.HW0Npf7xQVVjJiPA6VN6IRE3vDY8l_6Sm8nvxtmWlmsg.jMz6itmVWh1zdSx_fmDXwimptY-hfFxb79JNFevSBVog.GIF.home124/GIF_2022-12-12_%EC%98%A4%ED%9B%84_9-14-02.gif?type=w773">
+<a href="https://bitcoin123.vercel.app/" about="_blank">링크 바로가기</a>
 
-First, run the development server:
+<h1>Top 20 BitCoin Info.</h1>
+<ul>
+  <li>코인 거래소의 탑티어 코인을 매칭하여 자동 순위매기는 시스템입니다.</li>
+  <li><a href="https://www.cryptocompare.com/">CryptoCompare API</a>를 사용하였습니다</li>
+</ul>
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+<h1>프로젝트 구성 안내</h1>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<h1>기술 스택</h1>
+<ul>
+  <li>Frontend - Typescript, NextJS</li>
+  <li>State management - React-query, Recoil</li>
+  <li>Styling - Styled-components
+</ul>
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<h1>주요 기능 설명</h1>
+<h2>1. Top 20 코인 필터링</h2>
+<ul>
+  <li>API로 모든 코인의 정보 가져온 후, 그중 Top 20 코인을 Filter하여 Sort하는 기능 개발</li>
+</ul>
+<h2>2. 다크모드/라이트모드 </h2>
+<ul>
+  <li>스타일드 컴포넌트(Theme)와 Recoil로 다크모드/라이트모드 구현</li>
+</ul>
+<h2>3. 상세페이지</h2>
+<ul>
+  <li>React-query로 fetch 데이터 캐싱하여 빠른 페이지 전환속도 구현</li>
+  <li>Chart.js 구현</li>
+</ul>
