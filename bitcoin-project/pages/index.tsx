@@ -3,20 +3,19 @@ import Head from 'next/head';
 import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { fetchCoins } from '../components/react-query/api';
+import { coinIcons } from '../components/react-query/api';
 import Global from '../components/style/Global';
 
 interface IData {
-	FullName: string,
-	Name: string,
-	[name:string]: string,
-	SortOrder: string
+	FullName: string;
+	Name: string;
+	[name: string]: string;
+	SortOrder: string;
 }
 
 export default function Home() {
-	
 	const { isLoading, data } = useQuery('allCoins', fetchCoins);
-	const [rank, setRank] = useState<IData[]|null>(null);
-
+	const [rank, setRank] = useState<IData[] | null>(null);
 
 	useEffect(() => {
 		if (data) {
@@ -30,14 +29,12 @@ export default function Home() {
 			arr.sort((a, b) => a.SortOrder - Number(b.SortOrder));
 		}
 	}, [data]);
-
-
 	return (
 		<>
 			<Head>
 				<title>Ha young BitCoin - Top tier 20 coins!</title>
 			</Head>
-			<Global/>
+			<Global />
 			<p style={{ margin: '10px 0' }}>
 				거래소의 탑티어 코인을 매칭하여 자동 순위매기는 시스템
 			</p>
@@ -56,11 +53,6 @@ export default function Home() {
 										pathname: `/[name]`,
 										query: { name: el.Name },
 									}}>
-									<span>
-										<img
-											src={`https://coinicons-api.vercel.app/api/icon/${el.Name.toLowerCase()}`}
-										/>
-									</span>
 									{idx + 1 + '위 '}
 									{el.FullName}
 								</Link>
